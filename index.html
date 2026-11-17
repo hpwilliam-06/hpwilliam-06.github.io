@@ -315,16 +315,35 @@ function fit(){
  var vw=window.innerWidth,size=100*h.clientWidth/w*.985,cap=vw<=832?Math.max(56,Math.min(144,vw*.195)):Math.max(64,Math.min(272,vw*.13));
  h.style.fontSize=Math.max(40,Math.min(size,cap)).toFixed(1)+'px';
 }
-function stop(){cancelAnimationFrame(raf)}
-['touchstart','keydown','mousedown','wheel'].forEach(function(e){addEventListener(e,stop,{passive:true})});
+var wraf=0,wOn=false,wT=0,wC=0,wLast=0;
+function stop(){cancelAnimationFrame(raf);raf=0;cancelAnimationFrame(wraf);wOn=false;wLast=0}
+['touchstart','keydown','mousedown'].forEach(function(e){addEventListener(e,stop,{passive:true})});
 function smoothTo(y,ms){
  stop();y=Math.max(0,Math.round(y));
  var s=window.scrollY,d=y-s;if(Math.abs(d)<2)return;
  ms=ms||Math.min(1200,Math.max(750,Math.abs(d)*.4));var t0=null;
  function ease(t){return t*t*t*(t*(t*6-15)+10)}
- function step(ts){if(t0===null)t0=ts;var p=Math.min(1,(ts-t0)/ms);window.scrollTo({top:s+d*ease(p),behavior:'instant'});if(p<1)raf=requestAnimationFrame(step)}
+ function step(ts){if(t0===null)t0=ts;var p=Math.min(1,(ts-t0)/ms);window.scrollTo({top:s+d*ease(p),behavior:'instant'});raf=p<1?requestAnimationFrame(step):0}
  raf=requestAnimationFrame(step);
 }
+// Smooth mouse-wheel scrolling done here, because browsers drop their own when Windows animations are off.
+// Trackpads (small pixel deltas) keep native scrolling.
+function wtick(ts){
+ var dt=Math.min(64,ts-(wLast||ts));wLast=ts;
+ wC+=(wT-wC)*(1-Math.exp(-dt/105));
+ if(Math.abs(wT-wC)<.4){window.scrollTo({top:wT,behavior:'instant'});wOn=false;wLast=0;return}
+ window.scrollTo({top:wC,behavior:'instant'});wraf=requestAnimationFrame(wtick);
+}
+addEventListener('wheel',function(e){
+ if(e.ctrlKey||e.defaultPrevented||Math.abs(e.deltaX)>Math.abs(e.deltaY))return;
+ var dy=e.deltaMode===1?e.deltaY*32:e.deltaMode===2?e.deltaY*window.innerHeight:e.deltaY;
+ if(!wOn&&!raf&&e.deltaMode===0&&Math.abs(dy)<40)return;
+ e.preventDefault();cancelAnimationFrame(raf);raf=0;
+ if(!cur&&Math.abs(dy)>=40){var pj=document.querySelector('.pj');if(pj&&pj.offsetHeight)dy*=pj.offsetHeight/10/100}
+ var max=Math.max(0,document.documentElement.scrollHeight-window.innerHeight);
+ if(!wOn){wC=window.scrollY;wT=wC;wOn=true;wLast=0;wraf=requestAnimationFrame(wtick)}
+ wT=Math.min(max,Math.max(0,wT+dy));
+},{passive:false});
 function topOf(el){return el.getBoundingClientRect().top+window.scrollY}
 function rise(el){if(!el)return;el.classList.remove('rise');void el.offsetWidth;el.classList.add('rise')}
 function show(){
