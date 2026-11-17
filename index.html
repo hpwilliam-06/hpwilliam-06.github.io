@@ -367,7 +367,7 @@ function show(){
  bg();
 }
 document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('.bar a.home');if(!a)return;if(cur){goTop=true;return}e.preventDefault();smoothTo(0,Math.min(1300,Math.max(800,window.scrollY*.35)))});
-document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href="#work"]');if(a){e.preventDefault();smoothTo(topOf(document.getElementById('work'))-70)}});
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href="#work"]');if(a){e.preventDefault();var pj=document.querySelector('.pj');smoothTo(topOf(pj)+pj.offsetHeight/2-window.innerHeight/2)}});
 addEventListener('scroll',bg,{passive:true});addEventListener('resize',function(){bg();fit()});
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
 addEventListener('hashchange',show);show();
