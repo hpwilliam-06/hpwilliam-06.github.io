@@ -220,7 +220,7 @@ html{scroll-behavior:auto}
 .cur i{position:absolute;left:-6px;top:-6px;width:12px;height:12px;border-radius:50%;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.35);transform:scale(.583);transition:transform .2s cubic-bezier(.22,.61,.36,1)}
 .cur.on{opacity:1}
 .cur.big i{transform:scale(1)}
-@media (hover:hover) and (pointer:fine){html.hascur,html.hascur *{cursor:none!important}}
+@media (hover:hover) and (pointer:fine){html.hascur{cursor:none}}
 @media (hover:none),(pointer:coarse){.cur{display:none}}
 @media (prefers-reduced-motion:reduce){.cur i{transition:none}}
 
@@ -260,6 +260,7 @@ html.ld .hero .intro .cue{animation:ldFade 1s .95s both}
 #v-lodestar .fr h3{font-size:clamp(1.3rem,2.3vw,2.1rem);margin-bottom:.7rem}
 #v-lodestar .stmt{font-size:clamp(1.25rem,2.9vw,2.6rem)}
 </style>
+<noscript><style>.view[hidden]{display:block}</style></noscript>
 </head>
 <body>
 <script>document.documentElement.classList.add("ld");setTimeout(function(){document.documentElement.classList.remove("ld")},2600)</script>
@@ -281,10 +282,11 @@ html.ld .hero .intro .cue{animation:ldFade 1s .95s both}
 <a class="cue" href="#work">See the work ↓</a>
 </div>
 </div>
-<section id="work"><div class="pjs"><a class="pj" href="#lodestar"><div class="shot"><img data-from="#lsphone" alt="The Lodestar app icon on an iPhone home screen"></div><div class="cap"><h3>Lodestar</h3><span class="d">Logo and brand identity</span><span class="y">2026</span></div></a><a class="pj" href="#foreman"><div class="shot"><img data-from="#v-foreman img.full" alt="The Foreman app icon on an iPhone home screen"></div><div class="cap"><h3>Foreman</h3><span class="d">Logo and app icon</span><span class="y">2026</span></div></a><a class="pj" href="#other-projects"><div class="shot"><img data-from="#v-other-projects .thumb.photo img" alt="Trifold brochure mockup on a wooden table"></div><div class="cap"><h3>Other projects</h3><span class="d">Class projects: brochure and poster</span><span class="y">2026</span></div></a></div></section>
+<section id="work"><div class="pjs"><a class="pj" href="#lodestar"><div class="shot"><img src="images/lodestar-phone.jpg" alt="The Lodestar app icon on an iPhone home screen"></div><div class="cap"><h3>Lodestar</h3><span class="d">Logo and brand identity</span><span class="y">2026</span></div></a><a class="pj" href="#foreman"><div class="shot"><img src="images/foreman-phone.jpg" alt="The Foreman app icon on an iPhone home screen"></div><div class="cap"><h3>Foreman</h3><span class="d">Logo and app icon</span><span class="y">2026</span></div></a><a class="pj" href="#other-projects"><div class="shot"><img src="images/brochure.jpg" alt="Trifold brochure mockup on a wooden table"></div><div class="cap"><h3>Other projects</h3><span class="d">Class projects: brochure and poster</span><span class="y">2026</span></div></a></div></section>
 
 
 <div class="endwrap">
+<noscript><span id="about"></span></noscript>
 <section class="ab" id="about-sec">
 <div class="blk"><p class="lab">About</p><p class="txt">I’m William Ho, a graphic designer in Brooklyn. I love designing engaging, visually appealing work that satisfies my clients. When I’m not designing you can find me playing video games.</p></div>
 <div class="blk"><p class="lab">Current</p><p class="txt">Student at Brooklyn College, BA in Art with a minor in Graphic Design (2024 – present)</p></div>
@@ -299,7 +301,7 @@ html.ld .hero .intro .cue{animation:ldFade 1s .95s both}
 </div>
 
 </div>
-<div class="view" id="v-lodestar" hidden><a class="back" href="#">← All projects</a>
+<div class="view" id="v-lodestar" hidden><noscript><span id="lodestar"></span></noscript><a class="back" href="#">← All projects</a>
 <article class="cs" style="--d:#10113A;--p:#F5F8FC;--a:#B6BBFF">
 <img class="fimg" src="images/lodestar-cover.webp" alt="Lodestar logo in navy on off-white, with lilac rays around the star">
 <img class="fimg" src="images/lodestar-logomark.webp" alt="Lodestar brief: an all-in-one personal finance app that guides people from budgeting to financial education to investing, with the problem and the goal of the identity" loading="lazy">
@@ -311,7 +313,7 @@ html.ld .hero .intro .cue{animation:ldFade 1s .95s both}
 <img id="lsphone" class="fimg" src="images/lodestar-phone.jpg" alt="The Lodestar app icon on an iPhone home screen, on dark navy fabric" loading="lazy">
 </article>
 <div class="pager"><a href="#">← All projects</a><a href="#foreman">Next: Foreman →</a></div></div>
-<div class="view" id="v-foreman" hidden><a class="back" href="#">← All projects</a>
+<div class="view" id="v-foreman" hidden><noscript><span id="foreman"></span></noscript><a class="back" href="#">← All projects</a>
 <article class="cs" style="--d:#161616;--p:#F6F6F4;--a:#F47721">
 <div class="fr cover"><img class="full" src="images/foreman-phone.jpg" alt="The Foreman app icon, a black F with an orange dot on an off-white tile, on an iPhone home screen"><p class="ttl t">Foreman<small>Logo and app icon</small></p></div>
 <div class="fr"><p class="stmt">Foreman is an AI-powered OSHA recordkeeping platform. I designed its logo, a bold F built from rounded blocks with a single orange dot, and tested it as an iOS app icon.</p><div class="two2"><div class="b"><h3>Problem</h3><p>Foreman needed a logo fast, and there was no written brief. I worked from what the product does: helping safety managers keep accurate OSHA injury records.</p></div><div class="b"><h3>Our goal</h3><p>Give a serious safety tool a mark that feels solid and trustworthy, and that still reads clearly as a small iOS app icon.</p></div></div><div class="foot"><span>Foreman Branding</span><span>William Ho · ©2026</span></div></div>
@@ -321,7 +323,7 @@ html.ld .hero .intro .cue{animation:ldFade 1s .95s both}
 
 </article>
 <div class="pager"><a href="#">← All projects</a><a href="#other-projects">Next: Other projects →</a></div></div>
-<div class="view" id="v-other-projects" hidden><a class="back" href="#">← All projects</a>
+<div class="view" id="v-other-projects" hidden><noscript><span id="other-projects"></span></noscript><a class="back" href="#">← All projects</a>
 <article class="proj">
 <div class="thumb photo"><img src="images/brochure.jpg" alt="Mockup of the Beyond the Blue trifold brochure, open and closed, on a wooden table" loading="lazy"></div>
 <dl>
@@ -357,19 +359,21 @@ html.ld .hero .intro .cue{animation:ldFade 1s .95s both}
 <script>
 (function(){
 var b=document.querySelector('.menu-btn'),m=document.getElementById('index');
-function set(o){m.classList.toggle('open',o);b.setAttribute('aria-expanded',o)}
-b.addEventListener('click',function(){set(!m.classList.contains('open'))});
+var byHover=false;
+function set(o){m.classList.toggle('open',o);b.setAttribute('aria-expanded',o);if(!o)byHover=false}
+// a click right after hover-open keeps the menu open instead of toggling it shut
+b.addEventListener('click',function(){if(byHover){byHover=false;return}set(!m.classList.contains('open'))});
 m.addEventListener('click',function(e){if(e.target.tagName==='A')set(false)});
-if(matchMedia('(hover:hover) and (pointer:fine)').matches){var ht;function hv(o){clearTimeout(ht);if(o)set(true);else ht=setTimeout(function(){set(false)},180)}
+addEventListener('keydown',function(e){if(e.key==='Escape'&&m.classList.contains('open')){set(false);b.focus()}});
+if(matchMedia('(hover:hover) and (pointer:fine)').matches){var ht;function hv(o){clearTimeout(ht);if(o){if(!m.classList.contains('open'))byHover=true;set(true)}else ht=setTimeout(function(){set(false)},180)}
 [b,m].forEach(function(el){el.addEventListener('mouseenter',function(){hv(true)});el.addEventListener('mouseleave',function(){hv(false)})});}
 })();
 
 (function(){
 var views={'lodestar':'Lodestar','foreman':'Foreman','other-projects':'Other projects'},map={'lodestar':'lodestar','foreman':'foreman','other-projects':'other'};
-var cur='',goTop=false,homeY=0,raf=0,layers={};
+var homeTitle=document.title,cur='',goTop=false,homeY=0,raf=0,layers={};
 var home=document.getElementById('home'),menuBtn=document.querySelector('.menu-btn'),menu=document.getElementById('index');
 var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-document.querySelectorAll('img[data-from]').forEach(function(i){var s=document.querySelector(i.getAttribute('data-from'));if(s)i.src=s.getAttribute('src')});
 document.querySelectorAll('.bgl').forEach(function(l){layers[l.getAttribute('data-k')]=l});
 function bg(){
  var o={lodestar:0,foreman:0,other:0};
@@ -386,9 +390,8 @@ function fit(){
  var vw=window.innerWidth,size=100*h.clientWidth/w*.985,cap=vw<=832?Math.max(56,Math.min(144,vw*.195)):Math.max(64,Math.min(272,vw*.13));
  h.style.fontSize=Math.max(40,Math.min(size,cap)).toFixed(1)+'px';
 }
-var wraf=0,wOn=false,wT=0,wC=0,wLast=0;
-function stop(){cancelAnimationFrame(raf);cancelAnimationFrame(wraf);wOn=false;wLast=0}
-['touchstart','keydown','mousedown'].forEach(function(e){addEventListener(e,stop,{passive:true})});
+function stop(){cancelAnimationFrame(raf)}
+['touchstart','keydown','mousedown','wheel'].forEach(function(e){addEventListener(e,stop,{passive:true})});
 function smoothTo(y,ms){
  stop();y=Math.max(0,Math.round(y));
  var s=window.scrollY,d=y-s;if(Math.abs(d)<2)return;
@@ -398,22 +401,6 @@ function smoothTo(y,ms){
  function step(ts){if(t0===null)t0=ts;var p=Math.min(1,(ts-t0)/ms);window.scrollTo({top:s+d*ease(p),behavior:'instant'});if(p<1)raf=requestAnimationFrame(step)}
  raf=requestAnimationFrame(step);
 }
-function wtick(ts){
- var dt=Math.min(64,ts-(wLast||ts));wLast=ts;
- wC+=(wT-wC)*(1-Math.exp(-dt/105));
- if(Math.abs(wT-wC)<.4){window.scrollTo({top:wT,behavior:'instant'});wOn=false;wLast=0;return}
- window.scrollTo({top:wT===wC?wC:wC,behavior:'instant'});wraf=requestAnimationFrame(wtick);
-}
-addEventListener('wheel',function(e){
- if(rm||e.ctrlKey||e.defaultPrevented||Math.abs(e.deltaX)>Math.abs(e.deltaY))return;
- var dy=e.deltaMode===1?e.deltaY*32:e.deltaMode===2?e.deltaY*window.innerHeight:e.deltaY;
- if(!wOn&&!raf&&e.deltaMode===0&&Math.abs(dy)<40)return;
- e.preventDefault();cancelAnimationFrame(raf);
- if(!cur&&Math.abs(dy)>=40){var pj=document.querySelector('.pj');if(pj&&pj.offsetHeight)dy*=pj.offsetHeight/10/100}
- var max=Math.max(0,document.documentElement.scrollHeight-window.innerHeight);
- if(!wOn){wC=window.scrollY;wT=wC;wOn=true;wLast=0;wraf=requestAnimationFrame(wtick)}
- wT=Math.min(max,Math.max(0,wT+dy));
-},{passive:false});
 function topOf(el){return el.getBoundingClientRect().top+window.scrollY}
 function rise(el){if(rm||!el)return;el.classList.remove('rise');void el.offsetWidth;el.classList.add('rise')}
 function show(){
@@ -424,7 +411,7 @@ function show(){
  if(!isView)fit();
  document.querySelectorAll('.view').forEach(function(v){v.hidden=!(isView&&v.id==='v-'+h)});
  cur=isView?h:'';
- document.title=isView?views[h]+' — William Ho':'Oh, hello there! I’m William Ho';
+ document.title=isView?views[h]+' | William Ho':homeTitle;
  if(isView){window.scrollTo({top:0,behavior:'instant'});rise(document.getElementById('v-'+h))}
  else{
   if(prev)rise(home);
