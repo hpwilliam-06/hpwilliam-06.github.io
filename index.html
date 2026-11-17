@@ -21,7 +21,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500&family=Inter+Tight:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
 /* Hallmark · checked: 2026-11-17 · genre: atmospheric (inferred)
- * floor: 1 FAIL (19, the dash in the poster's own printed title, left for the owner) · fixed: 7a 19 34 48 50 55a 63 67 76 26a F21 F24 · structural: F15 printed
+ * floor: 19 and 27 FAIL by the owner's choice (the poster's printed title keeps its dash; motion ignores prefers-reduced-motion) · fixed: 7a 19 34 48 50 55a 63 67 76 26a F21 F24 · structural: F15 printed
  * built: the project · redesign: polish · v2.0.0 */
 /* Hallmark · waive 38iii · one accent full stop, once, in the hero · the lilac stop ends the hello greeting and echoes the Lodestar lilac */
 /* Hallmark · waive 26b · no form controls and no aria-disabled on the page · the menu toggle is the only button and is never disabled */
@@ -170,18 +170,12 @@ dd{margin:0;font-weight:500}
 @keyframes ldUp{from{opacity:0;transform:translate3d(0,.55em,0)}to{opacity:1;transform:none}}
 @keyframes ldFade{from{opacity:0}to{opacity:1}}
 .rise{animation:rise .6s cubic-bezier(.2,.7,.2,1) both}
-@media (prefers-reduced-motion:no-preference){
+/* motion runs even when the OS asks for reduced motion, by the owner's choice */
 html.ld .bar{animation:ldFade 1s .1s both}
 html.ld .hero h1 .ln{animation:ldUp 1.2s cubic-bezier(.16,.84,.24,1) both}
 html.ld .hero h1 .ln:nth-child(2){animation-delay:.14s}
 html.ld .hero .intro p{animation:ldUp 1s cubic-bezier(.16,.84,.24,1) .55s both}
 html.ld .hero .intro .cue{animation:ldFade 1s .95s both}
-}
-@media (prefers-reduced-motion:reduce){
-.bgl,#index,.menu-btn,.bar a.home,.ab a.hello,.cur i,.pj .shot img{transition:none}
-.rise{animation:none}
-.pj .shot img{transform:none}.pj:hover .shot img{scale:1}
-}
 
 /* responsive */
 @media (hover:none),(pointer:coarse){.menu-btn,.menu-btn:hover{transform:none}.bar a.home:hover{transform:none}.cur{display:none}}
@@ -305,7 +299,6 @@ if(matchMedia('(hover:hover) and (pointer:fine)').matches){var ht;function hv(o)
 var views={'lodestar':'Lodestar','foreman':'Foreman','other-projects':'Other projects'},map={'lodestar':'lodestar','foreman':'foreman','other-projects':'other'};
 var homeTitle=document.title,cur='',goTop=false,homeY=0,raf=0,layers={};
 var home=document.getElementById('home'),menuBtn=document.querySelector('.menu-btn'),menu=document.getElementById('index');
-var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
 document.querySelectorAll('.bgl').forEach(function(l){layers[l.getAttribute('data-k')]=l});
 function bg(){
  var o={lodestar:0,foreman:0,other:0};
@@ -327,14 +320,13 @@ function stop(){cancelAnimationFrame(raf)}
 function smoothTo(y,ms){
  stop();y=Math.max(0,Math.round(y));
  var s=window.scrollY,d=y-s;if(Math.abs(d)<2)return;
- if(rm){window.scrollTo({top:y,behavior:'instant'});return}
  ms=ms||Math.min(1200,Math.max(750,Math.abs(d)*.4));var t0=null;
  function ease(t){return t*t*t*(t*(t*6-15)+10)}
  function step(ts){if(t0===null)t0=ts;var p=Math.min(1,(ts-t0)/ms);window.scrollTo({top:s+d*ease(p),behavior:'instant'});if(p<1)raf=requestAnimationFrame(step)}
  raf=requestAnimationFrame(step);
 }
 function topOf(el){return el.getBoundingClientRect().top+window.scrollY}
-function rise(el){if(rm||!el)return;el.classList.remove('rise');void el.offsetWidth;el.classList.add('rise')}
+function rise(el){if(!el)return;el.classList.remove('rise');void el.offsetWidth;el.classList.add('rise')}
 function show(){
  var h=location.hash.replace(/^#/,''),isView=Object.prototype.hasOwnProperty.call(views,h),prev=cur;
  stop();
@@ -371,7 +363,7 @@ addEventListener('hashchange',show);show();
  addEventListener('hashchange',function(){big=false;c.classList.remove('big')});
 })();
 (function(){
- if(matchMedia('(prefers-reduced-motion:reduce)').matches||!matchMedia('(hover:hover) and (pointer:fine)').matches)return;
+ if(!matchMedia('(hover:hover) and (pointer:fine)').matches)return;
  var px=-1,py=-1,raf=0,st=new WeakMap();
  function loop(){
   var vh=innerHeight,busy=false;
