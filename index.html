@@ -163,7 +163,7 @@ dd{margin:0;font-weight:500}
 .cur i{position:absolute;left:-6px;top:-6px;width:12px;height:12px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 1px color-mix(in srgb,var(--bg) 35%,transparent);transform:scale(.583);transition:transform .2s cubic-bezier(.22,.61,.36,1)}
 .cur.on{opacity:1}
 .cur.big i{transform:scale(1)}
-@media (hover:hover) and (pointer:fine){html.hascur{cursor:none}}
+@media (hover:hover) and (pointer:fine){html.hascur,html.hascur *{cursor:none!important}}
 
 /* motion */
 @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
