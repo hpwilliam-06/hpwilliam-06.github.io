@@ -42,7 +42,8 @@
 --fm-orange:#F47721;--fm-black:#161616;--fm-off:#F6F6F4;--fm-gray:#E9E9E6;--fm-ember:rgb(122 53 16 / .9);
 --op-teal:#4A8E96;--op-glow:rgb(112 204 196 / .42);--op-deep:#12282D;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
-html{scroll-padding-top:5rem;overflow-x:clip}
+/* every rem grows past a 1920x960 window, by the tighter of width and height, so ultrawide screens don't oversize */
+html{scroll-padding-top:5rem;overflow-x:clip;font-size:max(100%,min(100vw/120,100vh/60))}
 *,*::before,*::after{box-sizing:border-box}
 body{margin:0;overflow-x:clip;background:var(--bg);color:var(--fg);font:400 1.0625rem/1.6 var(--body)}
 a{color:inherit}
@@ -160,7 +161,7 @@ dd{margin:0;font-weight:500}
 
 /* custom cursor */
 .cur{position:fixed;left:0;top:0;z-index:60;width:0;height:0;pointer-events:none;opacity:0;transition:opacity .2s;will-change:transform}
-.cur i{position:absolute;left:-6px;top:-6px;width:12px;height:12px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 1px color-mix(in srgb,var(--bg) 35%,transparent);transform:scale(.583);transition:transform .2s cubic-bezier(.22,.61,.36,1)}
+.cur i{position:absolute;left:-.375rem;top:-.375rem;width:.75rem;height:.75rem;border-radius:50%;background:var(--ink);box-shadow:0 0 0 1px color-mix(in srgb,var(--bg) 35%,transparent);transform:scale(.583);transition:transform .2s cubic-bezier(.22,.61,.36,1)}
 .cur.on{opacity:1}
 .cur.big i{transform:scale(1)}
 @media (hover:hover) and (pointer:fine){html.hascur,html.hascur *{cursor:none!important}}
@@ -312,8 +313,8 @@ function fit(){
  h.style.fontSize='100px';
  var w=0,rg=document.createRange();h.querySelectorAll('.ln').forEach(function(l){rg.selectNodeContents(l);w=Math.max(w,rg.getBoundingClientRect().width)});
  if(!w)return;
- var vw=window.innerWidth,size=100*h.clientWidth/w*.985,cap=vw<=832?Math.max(56,Math.min(144,vw*.195)):Math.max(64,Math.min(272,vw*.13));
- h.style.fontSize=Math.max(40,Math.min(size,cap)).toFixed(1)+'px';
+ var vw=window.innerWidth,r=parseFloat(getComputedStyle(document.documentElement).fontSize),size=100*h.clientWidth/w*.985,cap=vw<=832?Math.max(3.5*r,Math.min(9*r,vw*.195)):Math.max(4*r,Math.min(17*r,vw*.13));
+ h.style.fontSize=Math.max(2.5*r,Math.min(size,cap)).toFixed(1)+'px';
 }
 var wraf=0,wOn=false,wT=0,wC=0,wLast=0;
 function stop(){cancelAnimationFrame(raf);raf=0;cancelAnimationFrame(wraf);wOn=false;wLast=0}
